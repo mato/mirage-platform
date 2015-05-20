@@ -53,6 +53,9 @@ configure() {
 
 # invoke native code and byte code compiler targets
 compile() {
+  if [ -n "${OCAMLFIND_TOOLCHAIN}" ]; then
+    OCAMLFIND_TOOLCHAIN= ocamlbuild -use-ocamlfind -just-plugin
+  fi
   # build bytecode files and C bindings always
   ${OCAMLBUILD} ${OCAMLBUILD_FLAGS} ${NAME}.all
 }
